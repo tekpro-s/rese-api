@@ -13,7 +13,10 @@ class LoginController extends Controller
        $user = User::where('email', $request->email)->first();
        $is_checked = Hash::check($request->password, $user->password);
        if ($is_checked) {
-           return response()->json(['auth' => true], 200);
+           return response()->json([
+               'auth' => true,
+               'user' => $user
+           ], 201);
        } else {
            return response()->json(['auth' => false], 401);
        }

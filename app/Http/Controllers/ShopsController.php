@@ -15,14 +15,14 @@ class ShopsController extends Controller
         $shops = Shop::all();
 
         foreach($shops as $shop){
-            //$shop->area;
-            //$shop->genre;
-            //$shop->likes;
+            $shop->area;
+            $shop->genre;
+            $shop->likes;
         }
 
         if ($shops) {
             return response()->json([
-                //'message' => 'Shops got successfully',
+                'message' => 'Shops got successfully',
                 'data' => $shops
             ], 200);
         } else {

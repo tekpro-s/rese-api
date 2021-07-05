@@ -9,6 +9,8 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\ShopsController;
+use App\Http\Controllers\AreasController;
+use App\Http\Controllers\GenresController;
 
 Route::prefix('v1')->group(function(){
   Route::post('/users/registration', [RegistrationController::class, 'post']);
@@ -26,6 +28,9 @@ Route::prefix('v1')->group(function(){
 
   Route::post('/shops/{shop_id}/reservations', [ReservationsController::class, 'post']);
   Route::delete('/shops/{shop_id}/reservations', [ReservationsController::class, 'delete']);
-  Route::get('/shops/{user_id}/reservations', [ReservationsController::class, 'get']);
+  Route::get('/users/{user_id}/reservations', [ReservationsController::class, 'get']);
+
+  Route::get('/areas', [AreasController::class, 'index']);
+  Route::get('/genres', [GenresController::class, 'index']);
 });
 
