@@ -7,6 +7,19 @@ use Illuminate\Http\Request;
 
 class LikesController extends Controller
 {
+    public function index()
+    {
+        $likes = Like::all();
+
+        if ($likes) {
+            return response()->json([
+                'message' => 'Likes got successfully',
+                'data' => $likes
+            ], 200);
+        } else {
+            return response()->json(['status' => 'not found'], 404);
+        }
+    }
     public function get($user_id)
     {
         $likes = Like::where('user_id', $user_id)->get();

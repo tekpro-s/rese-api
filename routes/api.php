@@ -22,6 +22,8 @@ Route::prefix('v1')->group(function(){
   Route::get('/shops', [ShopsController::class, 'index']);
   Route::get('/shops/{shop_id}', [ShopsController::class, 'get']);
 
+
+  Route::get('/likes', [LikesController::class, 'index']);
   Route::put('/shops/{shop_id}/likes', [LikesController::class, 'put']);
   Route::delete('/shops/{shop_id}/likes', [LikesController::class, 'delete']);
   Route::get('/users/{user_id}/likes', [LikesController::class, 'get']);
