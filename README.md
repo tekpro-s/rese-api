@@ -8,17 +8,15 @@ git clone https://github.com/tekpro-s/rese-api.git rese-api
 cd rese-api/
 composer install
 ```
-## MySQLDB接続・マイグレーション・シーディング
-ターミナルでMySQLDB設定
+## MySQL接続・マイグレーション・シーディング
+ターミナルでMySQL設定
 ```
 CREATE DATABASE dbpj;
 USE dbpj;
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'MySQLのパスワード';
-flush privileges;
 quit;
 ```
 
-.env.exampleをもとに.envを作成し、MySQLDB接続情報を設定
+.env.exampleをもとに.envを作成し、MySQL接続情報を設定
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
