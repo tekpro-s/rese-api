@@ -10,16 +10,15 @@ composer install
 yarn install
 ```
 ## MySQLDB接続・マイグレーション・シーディング
+ターミナルでMySQLDB設定
 ```
-**MySQLDB設定**
-MySQL
 CREATE DATABASE dbpj;
 USE dbpj;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'MySQLのパスワード';
 flush privileges;
 quit;
 
-**.env.exampleをもとにMySQLDB接続情報を設定**
+**.env.exampleをもとに.envを作成し、MySQLDB接続情報を設定**
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
