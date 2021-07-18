@@ -44,6 +44,12 @@ class User extends Authenticatable
 
     public static function registration($request)
     {
+        $validated = $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'unique:users' ,'max:255'],
+            'password' => ['required', 'max:255'],
+        ]);
+
         $hashed_password = Hash::make($request->password);
         $param = [
             "name" => $request->name,

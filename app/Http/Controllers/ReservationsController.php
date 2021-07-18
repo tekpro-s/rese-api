@@ -10,6 +10,11 @@ class ReservationsController extends Controller
     public function get($user_id)
     {
         $reservations = Reservation::where('user_id', $user_id)->get();
+
+        foreach($reservations as $reservation){
+            $reservation->shop;
+        }
+
         if ($reservations) {
             return response()->json([
                 'message' => 'Reservation got successfully',
@@ -25,6 +30,15 @@ class ReservationsController extends Controller
         $reservation = Reservation::reservation($request, $shop_id);
         return response()->json([
             'message' => 'Reservation created successfully',
+            'data' => $reservation
+        ], 201);
+    }
+
+    public function put(Request $request, $id)
+    {
+        $reservation = Reservation::reservation_put($request, $id);
+        return response()->json([
+            'message' => 'Reservation updated successfully',
             'data' => $reservation
         ], 201);
     }

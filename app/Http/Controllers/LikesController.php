@@ -37,6 +37,7 @@ class LikesController extends Controller
     public function put(Request $request, $shop_id)
     {
         $like = Like::like($request, $shop_id);
+
         return response()->json([
             'message' => 'Like created successfully',
             'data' => $like

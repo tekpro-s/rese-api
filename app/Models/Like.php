@@ -11,6 +11,11 @@ class Like extends Model
     
     protected $fillable = ['user_id', 'shop_id'];
 
+    public function shop() 
+    {
+        return $this->belongsTo(Shop::class);
+    }
+
     public static function like($request, $shop_id)
     {
        

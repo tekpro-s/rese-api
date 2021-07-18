@@ -12,13 +12,8 @@ class ShopsController extends Controller
 {
     public function index()
     {
-        $shops = Shop::all();
-
-        foreach($shops as $shop){
-            $shop->area;
-            $shop->genre;
-            $shop->likes;
-        }
+        //$shops = Shop::all();
+        $shops = Shop::with('area','genre','likes')->get();
 
         if ($shops) {
             return response()->json([
@@ -32,10 +27,7 @@ class ShopsController extends Controller
     
     public function get($shop_id)
     {
-        $shop = Shop::find($shop_id);
-        $shop->area;
-        $shop->genre;
-        $shop->likes;
+        $shop = Shop::with('area','genre','likes')->where('id', $shop_id)->first();
 
         if ($shop) {
             return response()->json([

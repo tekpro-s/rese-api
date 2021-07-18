@@ -29,6 +29,7 @@ Route::prefix('v1')->group(function(){
   Route::get('/users/{user_id}/likes', [LikesController::class, 'get']);
 
   Route::post('/shops/{shop_id}/reservations', [ReservationsController::class, 'post']);
+  Route::put('/reservations/{id}', [ReservationsController::class, 'put']);
   Route::delete('/shops/{shop_id}/reservations', [ReservationsController::class, 'delete']);
   Route::get('/users/{user_id}/reservations', [ReservationsController::class, 'get']);
 
