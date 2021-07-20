@@ -6,6 +6,7 @@ use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Like;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ShopsController extends Controller
@@ -27,7 +28,11 @@ class ShopsController extends Controller
     
     public function get($shop_id)
     {
-        $shop = Shop::with('area','genre','likes')->where('id', $shop_id)->first();
+        $shop = Shop::with('area','genre','likes','comments')->where('id', $shop_id)->first();
+        // $shop = Shop::find($shop_id);
+        // $shop->area;
+        // $shop->genre;
+        // $shop->likes;
 
         if ($shop) {
             return response()->json([

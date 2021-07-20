@@ -11,6 +11,7 @@ use App\Http\Controllers\LikesController;
 use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\AreasController;
 use App\Http\Controllers\GenresController;
+use App\Http\Controllers\CommentsController;
 
 Route::prefix('v1')->group(function(){
   Route::post('/users/registration', [RegistrationController::class, 'post']);
@@ -35,5 +36,7 @@ Route::prefix('v1')->group(function(){
 
   Route::get('/areas', [AreasController::class, 'index']);
   Route::get('/genres', [GenresController::class, 'index']);
+
+  Route::post('/shops/{shop_id}/comments', [CommentsController::class, 'post']);
 });
 
