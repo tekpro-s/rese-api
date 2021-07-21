@@ -11,6 +11,11 @@ class Comment extends Model
     
     protected $fillable = ['user_id', 'shop_id', 'content', 'evaluation'];
 
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public static function comment($request, $shop_id)
     {
         //  Log::debug($request);
