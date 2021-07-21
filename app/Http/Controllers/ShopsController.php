@@ -28,10 +28,10 @@ class ShopsController extends Controller
     
     public function get($shop_id)
     {
-        //$shop = Shop::with('area','genre','likes','comments')->where('id', $shop_id)->first();
+        $shop = Shop::with('area','genre','likes','comments')->where('id', $shop_id)->first();
 
-        $shop = Shop::with('area','genre','likes','comments')->where('id', $shop_id)->get();
-        $shop = $shop->sortByDesc('comments.updated_at')->values();
+        // $shop = Shop::with('area','genre','likes','comments')->where('id', $shop_id)->get();
+        // $shop = $shop->sortByDesc('comments.created_at')->values();
 
         if ($shop) {
             return response()->json([
