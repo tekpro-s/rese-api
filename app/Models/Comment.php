@@ -21,6 +21,8 @@ class Comment extends Model
             "evaluation" => $request->evaluation,
         ];
         $comment = Comment::create($param);
+        
+        //return $shop->comment;
         return $comment;
     }
 }
