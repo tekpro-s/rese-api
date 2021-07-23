@@ -9,12 +9,7 @@ class ReservationsController extends Controller
 {
     public function get($user_id)
     {
-        //$reservations = Reservation::with('shop')->where('user_id', $user_id)->first();
         $reservations = Reservation::with('shop')->where('user_id', $user_id)->get();
-
-        // foreach($reservations as $reservation){
-        //     $reservation->shop;
-        // }
 
         if ($reservations) {
             return response()->json([

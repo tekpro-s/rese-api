@@ -23,7 +23,6 @@ Route::prefix('v1')->group(function(){
   Route::get('/shops', [ShopsController::class, 'index']);
   Route::get('/shops/{shop_id}', [ShopsController::class, 'get']);
 
-
   Route::get('/likes', [LikesController::class, 'index']);
   Route::put('/shops/{shop_id}/likes', [LikesController::class, 'put']);
   Route::delete('/shops/{shop_id}/likes', [LikesController::class, 'delete']);
@@ -38,5 +37,7 @@ Route::prefix('v1')->group(function(){
   Route::get('/genres', [GenresController::class, 'index']);
 
   Route::post('/shops/{shop_id}/comments', [CommentsController::class, 'post']);
+  Route::put('/comments/{id}', [CommentsController::class, 'put']);
+  Route::delete('/comments/{id}', [CommentsController::class, 'delete']);
 });
 

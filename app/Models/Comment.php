@@ -18,7 +18,6 @@ class Comment extends Model
 
     public static function comment($request, $shop_id)
     {
-        //  Log::debug($request);
         $param = [
             "shop_id" => $shop_id,
             "user_id" => $request->user_id,
@@ -26,8 +25,18 @@ class Comment extends Model
             "evaluation" => $request->evaluation,
         ];
         $comment = Comment::create($param);
-        
-        //return $shop->comment;
+
+        return $comment;
+    }
+
+    public static function comment_put($request, $id)
+    {
+        $param = [
+            "content" => $request->content,
+            "evaluation" => $request->evaluation,
+        ];
+        $comment = Comment::where('id', '=', $id)->update($param);
+
         return $comment;
     }
 }

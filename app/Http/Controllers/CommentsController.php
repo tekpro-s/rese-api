@@ -15,4 +15,21 @@ class CommentsController extends Controller
             'data' => $comment
         ], 201);
     }
+
+    public function put(Request $request, $id)
+    {
+        $comment = Comment::comment_put($request, $id);
+        return response()->json([
+            'message' => 'Comment updated successfully',
+            'data' => $comment
+        ], 201);
+    }
+    
+    public function delete(Request $request, $shop_id)
+    {
+        Comment::where('id', $request->id)->delete();
+        return response()->json([
+            'message' => 'Comment deleted successfully',
+        ], 200);
+    }
 }
