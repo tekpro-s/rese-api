@@ -37,16 +37,15 @@ class Reservation extends Model
         return $reservation;
     }
 
-    public static function reservation_put($request, $id)
+    public static function reservation_put($request, $shop_id)
     {
-        
         $param = [
-            "id" => $id,
+            "id" => $request->reservation_id,
             "date" => $request->date,
             "time" => $request->time,
             "number" => $request->number,
         ];
-        $reservation = Reservation::where('id', '=', $id)->update($param);
+        $reservation = Reservation::where('id', '=', $request->reservation_id)->where('shop_id', $shop_id)->update($param);
         return $reservation;
     }
 }

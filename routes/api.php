@@ -29,7 +29,7 @@ Route::prefix('v1')->group(function(){
   Route::get('/users/{user_id}/likes', [LikesController::class, 'get']);
 
   Route::post('/shops/{shop_id}/reservations', [ReservationsController::class, 'post']);
-  Route::put('/reservations/{id}', [ReservationsController::class, 'put']);
+  Route::put('/shops/{shop_id}/reservations', [ReservationsController::class, 'put']);
   Route::delete('/shops/{shop_id}/reservations', [ReservationsController::class, 'delete']);
   Route::get('/users/{user_id}/reservations', [ReservationsController::class, 'get']);
 
@@ -37,7 +37,7 @@ Route::prefix('v1')->group(function(){
   Route::get('/genres', [GenresController::class, 'index']);
 
   Route::post('/shops/{shop_id}/comments', [CommentsController::class, 'post']);
-  Route::put('/comments/{id}', [CommentsController::class, 'put']);
-  Route::delete('/comments/{id}', [CommentsController::class, 'delete']);
+  Route::put('/shops/{shop_id}/comments', [CommentsController::class, 'put']);
+  Route::delete('/shops/{shop_id}/comments', [CommentsController::class, 'delete']);
 });
 

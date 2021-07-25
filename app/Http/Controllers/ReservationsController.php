@@ -30,9 +30,9 @@ class ReservationsController extends Controller
         ], 201);
     }
 
-    public function put(Request $request, $id)
+    public function put(Request $request, $shop_id)
     {
-        $reservation = Reservation::reservation_put($request, $id);
+        $reservation = Reservation::reservation_put($request, $shop_id);
         return response()->json([
             'message' => 'Reservation updated successfully',
             'data' => $reservation

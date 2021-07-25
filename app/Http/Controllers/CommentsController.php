@@ -16,9 +16,9 @@ class CommentsController extends Controller
         ], 201);
     }
 
-    public function put(Request $request, $id)
+    public function put(Request $request, $shop_id)
     {
-        $comment = Comment::comment_put($request, $id);
+        $comment = Comment::comment_put($request, $shop_id);
         return response()->json([
             'message' => 'Comment updated successfully',
             'data' => $comment
@@ -27,7 +27,7 @@ class CommentsController extends Controller
     
     public function delete(Request $request, $shop_id)
     {
-        Comment::where('id', $request->id)->delete();
+        Comment::where('id', $request->comment_id)->where('shop_id', $shop_id)->delete();
         return response()->json([
             'message' => 'Comment deleted successfully',
         ], 200);

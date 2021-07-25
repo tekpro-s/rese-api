@@ -29,13 +29,13 @@ class Comment extends Model
         return $comment;
     }
 
-    public static function comment_put($request, $id)
+    public static function comment_put($request, $shop_id)
     {
         $param = [
             "content" => $request->content,
             "evaluation" => $request->evaluation,
         ];
-        $comment = Comment::where('id', '=', $id)->update($param);
+        $comment = Comment::where('id', '=', $request->comment_id)->where('shop_id', $shop_id)->update($param);
 
         return $comment;
     }
