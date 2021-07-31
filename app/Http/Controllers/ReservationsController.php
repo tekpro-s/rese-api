@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReservationStoreRequest;
 
 class ReservationsController extends Controller
 {
@@ -21,7 +22,7 @@ class ReservationsController extends Controller
         }
     }
 
-    public function post(Request $request, $shop_id)
+    public function post(ReservationStoreRequest $request, $shop_id)
     {
         $reservation = Reservation::reservation($request, $shop_id);
         return response()->json([
@@ -30,7 +31,7 @@ class ReservationsController extends Controller
         ], 201);
     }
 
-    public function put(Request $request, $shop_id)
+    public function put(ReservationStoreRequest $request, $shop_id)
     {
         $reservation = Reservation::reservation_put($request, $shop_id);
         return response()->json([

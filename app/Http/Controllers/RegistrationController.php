@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegistrationStoreRequest;
 
 class RegistrationController extends Controller
 {
-    public function post(Request $request)
+    public function post(RegistrationStoreRequest $request)
     {
         $user = User::registration($request);
         return response()->json([

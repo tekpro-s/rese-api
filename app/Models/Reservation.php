@@ -19,13 +19,6 @@ class Reservation extends Model
 
     public static function reservation($request, $shop_id)
     {
-        $validated = $request->validate([
-            'user_id' => ['required', 'numeric'],
-            'date' => ['required'],
-            'time' => ['required'],
-            'number' => ['required', 'numeric'],
-        ]);
-
         $param = [
             "user_id" => $request->user_id,
             "shop_id" => $shop_id,
