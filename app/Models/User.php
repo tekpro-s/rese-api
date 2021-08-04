@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -47,19 +48,19 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function role() 
+    {
+        return $this->belongsTo(Role::class);
+    }
+
     public static function registration($request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'unique:users' ,'max:255'],
-            'password' => ['required', 'max:255'],
-        ]);
-
         $hashed_password = Hash::make($request->password);
         $param = [
             "name" => $request->name,
             "email" => $request->email,
             "password" => $hashed_password,
+            "role_id" => $request->role_id,
         ];
         $user = User::create($param);
         return $user;

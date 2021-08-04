@@ -10,12 +10,12 @@ use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Requests\ShopStoreRequest;
 
 class ShopsController extends Controller
 {
     public function index()
     {
-        //$shops = Shop::all();
         $shops = Shop::with('area','genre','likes')->get();
 
         if ($shops) {
@@ -35,36 +35,39 @@ class ShopsController extends Controller
             $query->with('user:id,name');
         }])->where('id', $shop_id)->first();
 
-        //$comment = User::with('comments')->get();
-        //$comment = Comment::with('users')->where('id', $shop_id)->get();
-
-        // $comment = DB::table('comments')->where('shop_id', $shop->id)->get();
-        // $comment_data = array();
-        // foreach ($comment as $value) {
-        //     $comment_user = DB::table('users')->where('id', $value->user_id)->first();
-        //     $comments = [
-        //         "comment" => $value,
-        //         "comment_user" => $comment_user
-        //     ];
-        //     array_push($comment_data, $comments);
-        // }
-
-        // $shop = Shop::with('area','genre','likes','comments')->where('id', $shop_id)->get();
-        // $shop = $shop->sortByDesc('comments.created_at')->values();
-
-        // $items = [
-        //     "data" => $shop,
-        //     "comments" => $comment_data,
-        // ];
-
         if ($shop) {
             return response()->json([
                 'message' => 'Shop got successfully',
                 'data' => $shop,
-                // 'comment' => $comment_data
             ], 200);
         } else {
             return response()->json(['status' => 'not found'], 404);
         }
+    }
+
+    public function post(ShopStoreRequest $request)
+    {
+        $shop = Shop::shop($request);
+        return response()->json([
+            'message' => 'Shop created successfully',
+            'data' => $shop
+        ], 201);
+    }
+
+    public function put(ShopStoreRequest $request, $id)
+    {
+        $shop = Shop::shop_put($request, $id);
+        return response()->json([
+            'message' => 'Shop updated successfully',
+            'data' => $shop
+        ], 201);
+    }
+    
+    public function delete(Request $request, $id)
+    {
+        Shop::where('id', $id)->delete();
+        return response()->json([
+            'message' => 'Shop deleted successfully',
+        ], 200);
     }
 }

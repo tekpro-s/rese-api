@@ -8,7 +8,8 @@ class UsersController extends Controller
 {
     public function get($user_id)
     {
-        $user = User::find($user_id);
+        //$user = User::find($user_id);
+        $user = User::with('role')->where('id', $user_id)->get();
         if ($user) {
             return response()->json([
                 'message' => 'User got successfully',
