@@ -24,7 +24,7 @@ class ShopStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'max:255'],
             'area_id' => ['required'],
             'genre_id' => ['required'],
             'summary' => ['required'],
